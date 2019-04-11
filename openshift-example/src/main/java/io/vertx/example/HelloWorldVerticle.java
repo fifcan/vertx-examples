@@ -9,10 +9,9 @@ public class HelloWorldVerticle extends AbstractVerticle {
 
   @Override
   public void start() throws Exception {
-    final String hostName = InetAddress.getLocalHost().getHostName();
     vertx.createHttpServer()
       .requestHandler(req -> {
-        req.response().end("Hello World! " + Thread.currentThread().getName() + " " + hostName);
+        req.response().end("Hello World! " + Thread.currentThread().getName() + " " + this.deploymentID());
       })
       .listen(8080);
   }
